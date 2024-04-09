@@ -73,10 +73,14 @@ return {
   -- then: setup supertab in cmp
   {
     "hrsh7th/nvim-cmp",
-    -- dependencies = {
-    --   "hrsh7th/cmp-emoji",
-    -- },
-    ---@param opts cmp.ConfigSchema
+    dependencies = {
+      "zbirenbaum/copilot-cmp",
+      { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+    },
     opts = function(_, opts)
       local has_words_before = function()
         unpack = unpack or table.unpack
@@ -87,6 +91,18 @@ return {
       local luasnip = require("luasnip")
       local cmp = require("cmp")
 
+      local format_kinds = opts.formatting.format
+      opts.formatting.format = function(entry, item)
+        format_kinds(entry, item) -- add icons
+        return require("tailwindcss-colorizer-cmp").formatter(entry, item)
+      end
+
+      opts.snippet = {
+        expand = function(args)
+          require("luasnip").lsp_expand(args.body)
+        end,
+      }
+      table.insert(opts.sources, { name = "luasnip" })
       table.insert(opts.sources, 1, {
         name = "copilot",
         group_index = 1,

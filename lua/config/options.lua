@@ -8,7 +8,11 @@ setting.g = {
   mapleader = " ",
 }
 
+-- Add asterisks in block comments
+vim.opt.formatoptions:append({ "r" })
+
 setting.opt = {
+  title = true,
   cmdheight = 0,
   tabstop = 2,
   softtabstop = 2,
@@ -62,14 +66,25 @@ setting.opt = {
   backup = false,
   undodir = vim.fn.expand("~/.vim/undodir"),
   undofile = true,
-  backspace = "indent,eol,start",
+  backspace = { "start", "eol", "indent" },
   splitright = true,
   splitbelow = true,
   autochdir = false,
   modifiable = true,
   guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175",
   encoding = "UTF-8",
+  fileencoding = "utf-8",
+  showcmd = true,
+  inccommand = "split",
+  smarttab = true,
+  breakindent = true,
+  splitkeep = "cursor",
 }
+
+vim.opt.path:append({ "**" })
+vim.opt.wildignore:append({ "*/node_modules/*" })
+-- Add asterisks in block comments
+vim.opt.formatoptions:append({ "r" })
 
 -- vim.opt.listchars:append("space:⋅")
 -- vim.opt.listchars:append("eol:↴")
@@ -80,7 +95,7 @@ vim.opt.shortmess:append("sI")
 vim.opt.whichwrap:append("<>[]hl")
 -- vim.g.loaded_python3_provider=1
 vim.g.python3_host_prog = "/usr/local/bin/python3.10"
--- vim.g.nvim_tree_respect_buf_cwd = 1
+vim.g.nvim_tree_respect_buf_cwd = 1
 vim.wo.wrap = true
 vim.wo.linebreak = true
 vim.wo.relativenumber = true
@@ -104,27 +119,27 @@ for prefix, tbl in pairs(setting) do
   end
 end
 
-local disable_builtin_plugins = {
-  "netrw",
-  "netrwPlugin",
-  "netrwSettings",
-  "netrwFileHandlers",
-  "2html_plugin",
-  "getscript",
-  "getscriptPlugin",
-  "gzip",
-  "logipat",
-  "matchit",
-  "tar",
-  "tarPlugin",
-  "rrhelper",
-  "spellfile_plugin",
-  "vimball",
-  "vimballPlugin",
-  "zip",
-  "zipPlugin",
-}
-
-for _, builtin_plugin in ipairs(disable_builtin_plugins) do
-  vim.g["loaded_" .. builtin_plugin] = 1
-end
+-- local disable_builtin_plugins = {
+--   "netrw",
+--   "netrwPlugin",
+--   "netrwSettings",
+--   "netrwFileHandlers",
+--   "2html_plugin",
+--   "getscript",
+--   "getscriptPlugin",
+--   "gzip",
+--   "logipat",
+--   "matchit",
+--   "tar",
+--   "tarPlugin",
+--   "rrhelper",
+--   "spellfile_plugin",
+--   "vimball",
+--   "vimballPlugin",
+--   "zip",
+--   "zipPlugin",
+-- }
+--
+-- for _, builtin_plugin in ipairs(disable_builtin_plugins) do
+--   vim.g["loaded_" .. builtin_plugin] = 1
+-- end
