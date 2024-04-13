@@ -12,6 +12,7 @@ return {
     keys = {
       -- add a keymap to browse plugin files
       -- disable the keymap
+      { "<leader><space>", false },
       { "<leader>/", false },
       { "<leader>fr", false },
       -- stylua: ignore
