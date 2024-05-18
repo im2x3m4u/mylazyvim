@@ -8,15 +8,16 @@ return {
     },
     keys = {
       { "<leader>a", "<cmd>Grapple toggle<cr>", desc = "Tag a file" },
-      { "<c-t>", "<cmd>Grapple toggle_tags<cr>", desc = "Toggle tags menu" },
+      { "<c-t>", "<cmd>Grapple toggle_tags<cr>", desc = "Toggle file tags menu" },
 
-      { "<leader>ma", "<cmd>Grapple select index=1<cr>", desc = "Select first tag" },
-      { "<leader>mb", "<cmd>Grapple select index=2<cr>", desc = "Select second tag" },
-      { "<leader>mc", "<cmd>Grapple select index=3<cr>", desc = "Select third tag" },
-      { "<leader>md", "<cmd>Grapple select index=4<cr>", desc = "Select fourth tag" },
+      { ";q", "<cmd>Grapple select index=1<cr>", desc = "Select first file tags" },
+      { ";w", "<cmd>Grapple select index=2<cr>", desc = "Select second file tags" },
+      { ";e", "<cmd>Grapple select index=3<cr>", desc = "Select third file tags" },
+      { ";r", "<cmd>Grapple select index=4<cr>", desc = "Select fourth file tags" },
+      { ";t", "<cmd>Grapple select index=5<cr>", desc = "Select fifth file tags" },
 
-      { "<leader>mp", "<cmd>Grapple cycle backward<cr>", desc = "Go to previous tag" },
-      { "<leader>mn", "<cmd>Grapple cycle forward<cr>", desc = "Go to next tag" },
+      { "<c-j>", "<cmd>Grapple cycle backward<cr>", desc = "Go to previous file tag" },
+      { "<c-k>", "<cmd>Grapple cycle forward<cr>", desc = "Go to next file tag" },
     },
   },
 }

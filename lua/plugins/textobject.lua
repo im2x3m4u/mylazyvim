@@ -7,7 +7,9 @@ return {
         textobjects = {
           select = {
             enable = true,
-
+            disable = {
+              "dart",
+            },
             -- Automatically jump forward to textobj, similar to targets.vim
             lookahead = true,
 
@@ -45,6 +47,9 @@ return {
           },
           swap = {
             enable = true,
+            disable = {
+              "dart",
+            },
             swap_next = {
               ["<leader>na"] = "@parameter.inner", -- swap parameters/argument with next
               ["<leader>n:"] = "@property.outer", -- swap object property with next
@@ -58,6 +63,9 @@ return {
           },
           move = {
             enable = true,
+            disable = {
+              "dart",
+            },
             set_jumps = true, -- whether to set jumps in the jumplist
             goto_next_start = {
               ["]f"] = { query = "@call.outer", desc = "Next function call start" },

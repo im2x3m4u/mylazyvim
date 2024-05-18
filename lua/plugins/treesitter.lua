@@ -32,9 +32,9 @@ return {
       },
       indent = {
         enable = true,
-        -- disable = {
-        --   "python"
-        -- },
+        disable = {
+          "dart",
+        },
       },
       query_linter = {
         enable = true,
