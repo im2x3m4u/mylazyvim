@@ -1,4 +1,20 @@
 return {
+  "Shatur/neovim-ayu",
+  "RRethy/base16-nvim",
+  "xero/miasma.nvim",
+  "cocopon/iceberg.vim",
+  "kepano/flexoki-neovim",
+  "ntk148v/komau.vim",
+  "uloco/bluloco.nvim",
+  "LuRsT/austere.vim",
+  "NTBBloodbath/sweetie.nvim",
+  {
+    "maxmx03/fluoromachine.nvim",
+    -- config = function()
+    --   local fm = require "fluoromachine"
+    --   fm.setup { glow = true, theme = "fluoromachine" }
+    -- end,
+  },
   {
     "craftzdog/solarized-osaka.nvim",
     lazy = true,

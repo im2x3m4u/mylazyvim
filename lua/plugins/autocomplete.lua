@@ -74,6 +74,7 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
+      "onsails/lspkind.nvim",
       "zbirenbaum/copilot-cmp",
       { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
       "saadparwaiz1/cmp_luasnip",
@@ -108,8 +109,25 @@ return {
         group_index = 1,
         priority = 100,
       })
+      table.insert(opts.sources, { name = "nvim_lsp" })
+      table.insert(opts.sources, { name = "path" })
+      table.insert(opts.sources, { name = "buffer" })
       -- table.insert(opts.sources, { name = "emoji" })
       table.insert(opts, { preselect = cmp.PreselectMode.None })
+
+      -- Setup up vim-dadbod
+      cmp.setup.filetype({ "sql" }, {
+        sources = {
+          { name = "vim-dadbod-completion" },
+          { name = "buffer" },
+        },
+      })
+
+      luasnip.config.set_config({
+        history = false,
+        updateevents = "TextChanged,TextChangedI",
+      })
+
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
