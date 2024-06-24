@@ -94,6 +94,11 @@ return {
         }
       end
 
+      -- disable inlay hints. it's just anoying
+      opts.inlay_hints = {
+        enabled = false,
+      }
+
       opts.setup = {
         -- example to setup with typescript.nvim
         tsserver = function(_, opt)

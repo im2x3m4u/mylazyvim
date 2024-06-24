@@ -51,25 +51,25 @@ return {
       { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
     },
   },
-  {
-    "zbirenbaum/copilot-cmp",
-    dependencies = "copilot.lua",
-    opts = {
-      event = { "InsertEnter", "LspAttach" },
-      fix_pairs = true,
-    },
-    config = function(_, opts)
-      local copilot_cmp = require("copilot_cmp")
-      copilot_cmp.setup(opts)
-      -- attach cmp source whenever copilot attaches
-      -- fixes lazy-loading issues with the copilot cmp source
-      require("lazyvim.util").lsp.on_attach(function(client)
-        if client.name == "copilot" then
-          copilot_cmp._on_insert_enter({})
-        end
-      end)
-    end,
-  },
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   dependencies = "copilot.lua",
+  --   opts = {
+  --     event = { "InsertEnter", "LspAttach" },
+  --     fix_pairs = true,
+  --   },
+  --   config = function(_, opts)
+  --     local copilot_cmp = require("copilot_cmp")
+  --     copilot_cmp.setup(opts)
+  --     -- attach cmp source whenever copilot attaches
+  --     -- fixes lazy-loading issues with the copilot cmp source
+  --     require("lazyvim.util").lsp.on_attach(function(client)
+  --       if client.name == "copilot" then
+  --         copilot_cmp._on_insert_enter({})
+  --       end
+  --     end)
+  --   end,
+  -- },
   -- then: setup supertab in cmp
   {
     "hrsh7th/nvim-cmp",
@@ -104,11 +104,11 @@ return {
         end,
       }
       table.insert(opts.sources, { name = "luasnip" })
-      table.insert(opts.sources, 1, {
-        name = "copilot",
-        group_index = 1,
-        priority = 100,
-      })
+      table.insert(opts.sources, { name = "codeium" })
+      -- table.insert(opts.sources, 1, {
+      --   name = "copilot"   group_index = 1,
+      --   priority = 100,
+      -- })
       table.insert(opts.sources, { name = "nvim_lsp" })
       table.insert(opts.sources, { name = "path" })
       table.insert(opts.sources, { name = "buffer" })
