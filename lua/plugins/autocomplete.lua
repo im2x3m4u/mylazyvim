@@ -75,7 +75,7 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "onsails/lspkind.nvim",
-      "zbirenbaum/copilot-cmp",
+      -- "zbirenbaum/copilot-cmp",
       { "roobert/tailwindcss-colorizer-cmp.nvim", config = true },
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",

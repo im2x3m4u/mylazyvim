@@ -29,6 +29,34 @@ end)
 map.bulk_register({
   {
     mode = { "n" },
+    lhs = "<m-t>",
+    rhs = 'cit',
+    options = { silent = true },
+    description = "Change in tag",
+  },
+  {
+    mode = { "n" },
+    lhs = "<m-g>",
+    rhs = 'ci(',
+    options = { silent = true },
+    description = "Change in (parentheses)",
+  },
+  {
+    mode = { "n" },
+    lhs = "<m-n>",
+    rhs = 'ci"',
+    options = { silent = true },
+    description = "Change in double quotes",
+  },
+  {
+    mode = { "n" },
+    lhs = "<m-m>",
+    rhs = "ci'",
+    options = { silent = true },
+    description = "Change in single quotes",
+  },
+  {
+    mode = { "n" },
     lhs = "<leader>/",
     rhs = function()
       require("Comment.api").toggle.linewise.current()
