@@ -29,17 +29,17 @@ end)
 map.bulk_register({
   {
     mode = { "n" },
-    lhs = "<m-t>",
-    rhs = 'cit',
+    lhs = "<m-g>",
+    rhs = 'ci{',
     options = { silent = true },
-    description = "Change in tag",
+    description = "Change in {}",
   },
   {
     mode = { "n" },
-    lhs = "<m-g>",
+    lhs = "<m-t>",
     rhs = 'ci(',
     options = { silent = true },
-    description = "Change in (parentheses)",
+    description = "Change in ()",
   },
   {
     mode = { "n" },
@@ -274,13 +274,13 @@ map.bulk_register({
     options = { silent = true },
     description = "copy to register a",
   },
-  {
-    mode = { "n", "i" },
-    lhs = "<C-c>",
-    rhs = "yy",
-    options = { silent = true },
-    description = "copy a line",
-  },
+  -- {
+  --   mode = { "n", "i" },
+  --   lhs = "<C-c>",
+  --   rhs = "yy",
+  --   options = { silent = true },
+  --   description = "copy a line",
+  -- },
   {
     mode = { "n", "v" },
     lhs = "<leader>v",
