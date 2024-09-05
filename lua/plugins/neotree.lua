@@ -728,10 +728,11 @@ return {
   end,
   opts = {
     sources = { "filesystem", "buffers", "git_status", "document_symbols" },
+    close_if_last_window = true,
     open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
     filesystem = {
       bind_to_cwd = false,
-      follow_current_file = { enabled = true, leave_dirs_open = false },
+      follow_current_file = { enabled = true, leave_dirs_open = true },
       use_libuv_file_watcher = false,
       group_empty_dirs = false, -- when true, empty folders will be grouped together
       hijack_netrw_behavior = "open_default",

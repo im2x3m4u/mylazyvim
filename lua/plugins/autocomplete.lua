@@ -81,6 +81,7 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
     },
     opts = function(_, opts)
       local has_words_before = function()
@@ -103,7 +104,7 @@ return {
           require("luasnip").lsp_expand(args.body)
         end,
       }
-      table.insert(opts.sources, { name = "luasnip" })
+      table.insert(opts.sources, { name = "luasnip", keyword_length = 2 })
       table.insert(opts.sources, { name = "codeium" })
       -- table.insert(opts.sources, 1, {
       --   name = "copilot"   group_index = 1,
@@ -111,7 +112,7 @@ return {
       -- })
       table.insert(opts.sources, { name = "nvim_lsp" })
       table.insert(opts.sources, { name = "path" })
-      table.insert(opts.sources, { name = "buffer" })
+      table.insert(opts.sources, { name = "buffer", keyword_length = 3 })
       -- table.insert(opts.sources, { name = "emoji" })
       table.insert(opts, { preselect = cmp.PreselectMode.None })
 
@@ -129,6 +130,8 @@ return {
       })
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<C-Space>"] = cmp.mapping.complete(),
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
@@ -152,6 +155,34 @@ return {
           end
         end, { "i", "s" }),
       })
+    end,
+    config = function(_, opts)
+      local cmp = require("cmp")
+
+      -- `/` cmdline setup.
+      cmp.setup.cmdline("/", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = "buffer" },
+        },
+      })
+
+      -- `:` cmdline setup.
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "path" },
+        }, {
+          {
+            name = "cmdline",
+            option = {
+              ignore_cmds = { "Man", "!" },
+            },
+          },
+        }),
+      })
+
+      cmp.setup(opts)
     end,
   },
 }

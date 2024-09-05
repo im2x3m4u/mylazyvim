@@ -1,6 +1,9 @@
 return {
   {
     "stevearc/oil.nvim",
+    lazy = true,
+    event = "VeryLazy",
+    cmd = { "Oil" },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("oil").setup({
@@ -33,7 +36,7 @@ return {
       })
 
       -- Open parent directory in current window
-      vim.keymap.set("n", "<space>fs", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+      vim.keymap.set("n", "<space>fo", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
       -- Open parent directory in floating window
       vim.keymap.set("n", "<space>.", require("oil").toggle_float)

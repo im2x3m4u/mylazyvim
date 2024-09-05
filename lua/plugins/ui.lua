@@ -10,6 +10,11 @@ return {
   -- messages, cmdline and the popupmenu
   {
     "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
     opts = function(_, opts)
       table.insert(opts.routes, {
         filter = {
@@ -49,6 +54,14 @@ return {
       }
 
       opts.presets.lsp_doc_border = true
+      opts.presets.bottom_search = false
+      opts.presets.command_palette = false
+      opts.presets.long_message_to_split = true
+      opts.lsp.override = {
+        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+        ["vim.lsp.util.stylize_markdown"] = true,
+        ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+      }
     end,
   },
 
