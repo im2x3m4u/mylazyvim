@@ -10,3 +10,7 @@ vim.cmd("colorscheme koehler")
 vim.cmd("colorscheme base16-tokyodark")
 
 vim.cmd("colorscheme citruszest")
+
+vim.cmd("colorscheme base16-tokyodark")
+
+vim.cmd("colorscheme citruszest")

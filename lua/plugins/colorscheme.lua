@@ -73,7 +73,12 @@ return {
     "folke/tokyonight.nvim",
     lazy = true,
     priority = 1000,
-    opts = { style = "moon" },
+    opts = {
+      style = "moon",
+      plugins = {
+        headlines = true,
+      },
+    },
     config = function()
       local bg = "#011628"
       local bg_dark = "#011423"
@@ -146,6 +151,11 @@ return {
   {
     "zootedb0t/citruszest.nvim",
     priority = 1009,
+    opts = {
+      plugins = {
+        headlines = true,
+      },
+    },
   },
   -- Configure LazyVim to load gruvbox
   {

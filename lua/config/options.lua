@@ -100,7 +100,7 @@ vim.wo.wrap = true
 vim.wo.linebreak = true
 vim.wo.relativenumber = true
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = "menuone,noselect"
+vim.o.completeopt = "menuone,noselect,preview"
 vim.o.termguicolors = true
 
 -- Remap for dealing with word wrap

@@ -23,6 +23,19 @@ return {
         },
         opts = { skip = true },
       })
+      table.insert(opts.routes, {
+        filter = {
+          event = "msg_show",
+          any = {
+            { find = "%d+L, %d+B" },
+            { find = "; after #%d+" },
+            { find = "; before #%d+" },
+            { find = "%d fewer lines" },
+            { find = "%d more lines" },
+          },
+        },
+        opts = { skip = true },
+      })
       local focused = true
       vim.api.nvim_create_autocmd("FocusGained", {
         callback = function()
@@ -34,7 +47,7 @@ return {
           focused = false
         end,
       })
-      table.insert(opts.routes, 1, {
+      table.insert(opts.routes, {
         filter = {
           cond = function()
             return not focused
