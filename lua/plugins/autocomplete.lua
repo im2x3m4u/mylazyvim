@@ -18,14 +18,20 @@ return {
   --     end, { expr = true })
   --   end,
   -- },
+  -- {
+  --   "Exafunction/codeium.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "hrsh7th/nvim-cmp",
+  --   },
+  --   config = function()
+  --     require("codeium").setup({})
+  --   end,
+  -- },
   {
-    "Exafunction/codeium.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "hrsh7th/nvim-cmp",
-    },
+    "luozhiya/fittencode.nvim",
     config = function()
-      require("codeium").setup({})
+      require("fittencode").setup()
     end,
   },
   -- Use <tab> for completion and snippets (supertab)
@@ -102,6 +108,7 @@ return {
 
       local luasnip = require("luasnip")
       local cmp = require("cmp")
+      local lspkind = require("lspkind")
 
       local format_kinds = opts.formatting.format
       opts.formatting.format = function(entry, item)
@@ -115,7 +122,8 @@ return {
         end,
       }
       table.insert(opts.sources, { name = "luasnip", keyword_length = 2 })
-      table.insert(opts.sources, { name = "codeium" })
+      table.insert(opts.sources, { name = "fittencode", group_index = 1 })
+      -- table.insert(opts.sources, { name = "codeium" })
       -- table.insert(opts.sources, 1, {
       --   name = "copilot"   group_index = 1,
       --   priority = 100,
@@ -125,6 +133,15 @@ return {
       table.insert(opts.sources, { name = "buffer", keyword_length = 3 })
       -- table.insert(opts.sources, { name = "emoji" })
       table.insert(opts, { preselect = cmp.PreselectMode.None })
+      table.insert(opts, {
+        formatting = {
+          format = lspkind.cmp_format({
+            mode = "symbol",
+            max_width = 50,
+            symbol_map = { FittenCode = "" },
+          }),
+        },
+      })
 
       -- Setup up vim-dadbod
       cmp.setup.filetype({ "sql" }, {
@@ -142,6 +159,8 @@ return {
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
         ["<C-Space>"] = cmp.mapping.complete(),
+        -- Accept multi-line completion
+        ["<c-y>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = false }),
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
