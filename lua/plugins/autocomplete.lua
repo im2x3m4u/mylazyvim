@@ -28,12 +28,6 @@ return {
   --     require("codeium").setup({})
   --   end,
   -- },
-  {
-    "luozhiya/fittencode.nvim",
-    config = function()
-      require("fittencode").setup()
-    end,
-  },
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
   {
@@ -54,17 +48,17 @@ return {
     },
     -- stylua: ignore
     keys = {
-      {
-        "<tab>",
-        function()
-          return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
-        end,
-        expr = true,
-        silent = true,
-        mode = "i",
-      },
-      { "<tab>",   function() require("luasnip").jump(1) end,  mode = "s" },
-      { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+    --   {
+    --     "<tab>",
+    --     function()
+    --       return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+    --     end,
+    --     expr = true,
+    --     silent = true,
+    --     mode = "i",
+    --   },
+    --   { "<tab>",   function() require("luasnip").jump(1) end,  mode = "s" },
+    --   { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
     },
   },
   -- {
@@ -122,7 +116,7 @@ return {
         end,
       }
       table.insert(opts.sources, { name = "luasnip", keyword_length = 2 })
-      table.insert(opts.sources, { name = "fittencode", group_index = 1 })
+      -- table.insert(opts.sources, { name = "fittencode" })
       -- table.insert(opts.sources, { name = "codeium" })
       -- table.insert(opts.sources, 1, {
       --   name = "copilot"   group_index = 1,
@@ -134,6 +128,7 @@ return {
       -- table.insert(opts.sources, { name = "emoji" })
       table.insert(opts, { preselect = cmp.PreselectMode.None })
       table.insert(opts, {
+        sources = { name = "fittencode", group_index = 1 },
         formatting = {
           format = lspkind.cmp_format({
             mode = "symbol",
@@ -157,13 +152,11 @@ return {
       })
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        ["<CR>"] = cmp.mapping.confirm({ select = false }),
         ["<C-Space>"] = cmp.mapping.complete(),
-        -- Accept multi-line completion
-        ["<c-y>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = false }),
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            cmp.select_next_item()
+            cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
             -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
             -- this way you will only jump inside the snippet region
           elseif luasnip.expand_or_jumpable() then
@@ -176,7 +169,7 @@ return {
         end, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            cmp.select_prev_item()
+            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
           elseif luasnip.jumpable(-1) then
             luasnip.jump(-1)
           else

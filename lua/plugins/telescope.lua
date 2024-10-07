@@ -23,6 +23,8 @@ return {
       { "<leader><space>", false },
       { "<leader>/", false },
       { "<leader>fr", false },
+      { "<c-y>", false },
+      { "<TAB>", false },
       -- stylua: ignore
       {
         "ft",

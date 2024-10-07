@@ -30,14 +30,14 @@ map.bulk_register({
   {
     mode = { "n" },
     lhs = "<m-g>",
-    rhs = 'ci{',
+    rhs = "ci{",
     options = { silent = true },
     description = "Change in {}",
   },
   {
     mode = { "n" },
     lhs = "<m-t>",
-    rhs = 'ci(',
+    rhs = "ci(",
     options = { silent = true },
     description = "Change in ()",
   },
@@ -268,11 +268,13 @@ map.bulk_register({
     description = "copy to register f",
   },
   {
-    mode = { "v" },
+    mode = { "i" },
     lhs = "<c-y>",
-    rhs = '"ay',
+    rhs = function()
+      require("fittencode").accept_all_suggestions()
+    end,
     options = { silent = true },
-    description = "copy to register a",
+    description = "Accept all sugestion",
   },
   -- {
   --   mode = { "n", "i" },
