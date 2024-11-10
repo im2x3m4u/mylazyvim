@@ -1,33 +1,4 @@
 return {
-  -- {
-  --   "Exafunction/codeium.vim",
-  --   event = "BufRead",
-  --   config = function()
-  --     -- Change '<C-g>' here to any keycode you like.
-  --     vim.keymap.set("i", "<c-c>", function()
-  --       return vim.fn["codeium#Accept"]()
-  --     end, { expr = true })
-  --     vim.keymap.set("i", "<c-n>", function()
-  --       return vim.fn["codeium#CycleCompletions"](1)
-  --     end, { expr = true })
-  --     vim.keymap.set("i", "<c-m>", function()
-  --       return vim.fn["codeium#CycleCompletions"](-1)
-  --     end, { expr = true })
-  --     vim.keymap.set("i", "<c-f>", function()
-  --       return vim.fn["codeium#Clear"]()
-  --     end, { expr = true })
-  --   end,
-  -- },
-  -- {
-  --   "Exafunction/codeium.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "hrsh7th/nvim-cmp",
-  --   },
-  --   config = function()
-  --     require("codeium").setup({})
-  --   end,
-  -- },
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
   {
@@ -127,16 +98,16 @@ return {
       table.insert(opts.sources, { name = "buffer", keyword_length = 3 })
       -- table.insert(opts.sources, { name = "emoji" })
       table.insert(opts, { preselect = cmp.PreselectMode.None })
-      table.insert(opts, {
-        sources = { name = "fittencode", group_index = 1 },
-        formatting = {
-          format = lspkind.cmp_format({
-            mode = "symbol",
-            max_width = 50,
-            symbol_map = { FittenCode = "" },
-          }),
-        },
-      })
+      -- table.insert(opts, {
+      --   sources = { name = "fittencode", group_index = 1 },
+      --   formatting = {
+      --     format = lspkind.cmp_format({
+      --       mode = "symbol",
+      --       max_width = 50,
+      --       symbol_map = { FittenCode = "" },
+      --     }),
+      --   },
+      -- })
 
       -- Setup up vim-dadbod
       cmp.setup.filetype({ "sql" }, {
