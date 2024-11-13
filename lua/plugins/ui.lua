@@ -150,7 +150,7 @@ return {
     end,
     keys = {
       {
-        "<leader>h",
+        "<leader>D",
         "<cmd>tabnew<cr><bar><bar><cmd>DBUI<cr>",
         desc = "Open DB UI",
       },
