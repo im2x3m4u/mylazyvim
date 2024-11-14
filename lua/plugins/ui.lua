@@ -118,7 +118,7 @@ return {
   },
   -- LazyGit integration with Telescope
   {
-    "kdheepak/lazygit.nvim",
+    "kdheepak/lazygit.nvim" --[[  ]],
     keys = {
       {
         ";g",
