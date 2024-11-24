@@ -43,14 +43,14 @@ map.bulk_register({
   },
   {
     mode = { "n" },
-    lhs = "<m-n>",
+    lhs = "<m-d>",
     rhs = 'ci"',
     options = { silent = true },
     description = "Change in double quotes",
   },
   {
     mode = { "n" },
-    lhs = "<m-m>",
+    lhs = "<m-s>",
     rhs = "ci'",
     options = { silent = true },
     description = "Change in single quotes",

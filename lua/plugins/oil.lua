@@ -15,7 +15,7 @@ return {
           show_hidden = true,
           natural_order = true,
           is_always_hidden = function(name, _)
-            return name == ".." or name == ".git"
+            return name == "node_modules" or name == ".git"
           end,
         },
         float = {
@@ -36,10 +36,10 @@ return {
       })
 
       -- Open parent directory in current window
-      vim.keymap.set("n", "<space>fo", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+      vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
       -- Open parent directory in floating window
-      vim.keymap.set("n", "<space>.", require("oil").toggle_float)
+      vim.keymap.set("n", "<space>-", require("oil").toggle_float)
     end,
   },
 }

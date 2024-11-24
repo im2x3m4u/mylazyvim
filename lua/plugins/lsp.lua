@@ -140,13 +140,13 @@ return {
       end
 
       -- diagnostics signs
-      if vim.fn.has("nvim-0.10.0") == 0 then
-        for severity, icon in pairs(opts.diagnostics.signs.text) do
-          local name = vim.diagnostic.severity[severity]:lower():gsub("^%l", string.upper)
-          name = "DiagnosticSign" .. name
-          vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-        end
-      end
+      -- if vim.fn.has("nvim-0.10.0") == 0 then
+      -- for severity, icon in pairs(opts.diagnostics.signs.text) do
+      --   local name = vim.diagnostic.severity[severity]:lower():gsub("^%l", string.upper)
+      --   name = "DiagnosticSign" .. name
+      --   vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
+      -- end
+      -- end
 
       -- inlay hints
       if opts.inlay_hints.enabled then
