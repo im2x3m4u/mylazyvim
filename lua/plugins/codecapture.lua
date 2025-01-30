@@ -19,8 +19,9 @@ return {
       bg_theme = "dusk", -- bamboo,sea,grape,dusk,peach,summer
       -- bg_color = "#535c68",
       has_line_number = true,
-      bg_x_padding = 28,
-      bg_y_padding = 28,
+      -- bg_x_padding = 28,
+      -- bg_y_padding = 28,
+      bg_padding = 0,
       watermark = "@im2x3m4u",
     },
   },
