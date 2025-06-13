@@ -1,74 +1,4 @@
 return {
-  -- {
-  --   "Exafunction/codeium.vim",
-  --   event = "BufRead",
-  --   config = function()
-  --     -- Change '<C-g>' here to any keycode you like.
-  --     vim.keymap.set("i", "<c-c>", function()
-  --       return vim.fn["codeium#Accept"]()
-  --     end, { expr = true })
-  --     vim.keymap.set("i", "<c-n>", function()
-  --       return vim.fn["codeium#CycleCompletions"](1)
-  --     end, { expr = true })
-  --     vim.keymap.set("i", "<c-m>", function()
-  --       return vim.fn["codeium#CycleCompletions"](-1)
-  --     end, { expr = true })
-  --     vim.keymap.set("i", "<c-f>", function()
-  --       return vim.fn["codeium#Clear"]()
-  --     end, { expr = true })
-  --   end,
-  -- },
-  -- {
-  --   "Exafunction/codeium.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "hrsh7th/nvim-cmp",
-  --   },
-  --   config = function()
-  --     require("codeium").setup({
-  --       -- Optionally disable cmp source if using virtual text only
-  --       enable_cmp_source = false,
-  --       virtual_text = {
-  --         enabled = true,
-  --
-  --         -- These are the defaults
-  --
-  --         -- Set to true if you never want completions to be shown automatically.
-  --         manual = false,
-  --         -- A mapping of filetype to true or false, to enable virtual text.
-  --         filetypes = {},
-  --         -- Whether to enable virtual text of not for filetypes not specifically listed above.
-  --         default_filetype_enabled = true,
-  --         -- How long to wait (in ms) before requesting completions after typing stops.
-  --         idle_delay = 75,
-  --         -- Priority of the virtual text. This usually ensures that the completions appear on top of
-  --         -- other plugins that also add virtual text, such as LSP inlay hints, but can be modified if
-  --         -- desired.
-  --         virtual_text_priority = 65535,
-  --         -- Set to false to disable all key bindings for managing completions.
-  --         map_keys = true,
-  --         -- The key to press when hitting the accept keybinding but no completion is showing.
-  --         -- Defaults to \t normally or <c-n> when a popup is showing.
-  --         accept_fallback = nil,
-  --         -- Key bindings for managing completions in virtual text mode.
-  --         key_bindings = {
-  --           -- Accept the current completion.
-  --           accept = "<c-c>",
-  --           -- Accept the next word.
-  --           accept_word = false,
-  --           -- Accept the next line.
-  --           accept_line = false,
-  --           -- Clear the virtual text.
-  --           clear = false,
-  --           -- Cycle to the next completion.
-  --           next = "<c-n>",
-  --           -- Cycle to the previous completion.
-  --           prev = "<c-m>",
-  --         },
-  --       },
-  --     })
-  --   end,
-  -- },
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
@@ -76,6 +6,55 @@ return {
     version = false, -- set this if you want to always pull the latest change
     opts = {
       -- add any opts here
+      -- ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
+      ---@alias Mode "agentic" | "legacy"
+      mode = "agentic", -- The default mode for interaction. "agentic" uses tools to automatically generate code, "legacy" uses the old planning method to generate code.
+      -- WARNING: Since auto-suggestions are a high-frequency operation and therefore expensive,
+      -- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
+      -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
+      auto_suggestions_provider = nil,
+      provider = "openrouter", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
+      providers = {
+        claude = {
+          endpoint = "https://api.anthropic.com",
+          -- model = "claude-3-7-sonnet-20250219",
+          model = "claude-sonnet-4-20250514",
+          extra_request_body = {
+            temperature = 0.75,
+            max_tokens = 4096,
+          },
+        },
+        openai = {
+          endpoint = "https://api.openai.com/v1",
+          model = "gpt-4o-mini", -- your desired model (or use gpt-4o, etc.)
+          extra_request_body = {
+            timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+            temperature = 0.75,
+            max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+            --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+          },
+        },
+        deepseek = {
+          __inherited_from = "openai",
+          api_key_name = "DEEPSEEK_API_KEY",
+          endpoint = "https://api.deepseek.com",
+          model = "deepseek-coder",
+          extra_request_body = {
+            timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+            temperature = 0.75,
+            max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+            --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+          },
+        },
+        openrouter = {
+          __inherited_from = "openai",
+          endpoint = "https://openrouter.ai/api/v1",
+          api_key_name = "OPENROUTER_API_KEY",
+          model = "mistralai/devstral-small:free",
+          -- model = "deepseek/deepseek-r1-0528:free",
+          -- disable_tools = true,
+        },
+      },
     },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
@@ -115,11 +94,4 @@ return {
       },
     },
   },
-  -- {
-  --   "luozhiya/fittencode.nvim",
-  --   config = function(opts)
-  --     require("fittencode").setup(opts)
-  --     vim.api.nvim_set_hl(0, "CmpItemKindFittenCode", { fg = "#6CC644" })
-  --   end,
-  -- },
 }

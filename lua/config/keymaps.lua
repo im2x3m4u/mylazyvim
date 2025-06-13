@@ -57,6 +57,19 @@ map.bulk_register({
   },
   {
     mode = { "n" },
+    lhs = "<c-k>",
+    rhs = function()
+      if vim.diagnostic.is_enabled() then
+        vim.diagnostic.enable(false)
+      else
+        vim.diagnostic.enable()
+      end
+    end,
+    options = { silent = true },
+    description = "Toggle diagnostic",
+  },
+  {
+    mode = { "n" },
     lhs = "<leader>/",
     rhs = function()
       require("Comment.api").toggle.linewise.current()
@@ -204,13 +217,13 @@ map.bulk_register({
     options = { silent = true },
     description = "Find Files Here",
   },
-  -- {
-  --   mode = { "n" },
-  --   lhs = ";",
-  --   rhs = ":",
-  --   options = { silent = false },
-  --   description = "Enter Command Mode",
-  -- },
+  {
+    mode = { "n" },
+    lhs = ";",
+    rhs = ":",
+    options = { silent = false },
+    description = "Enter Command Mode",
+  },
   {
     mode = { "v" },
     lhs = "<tab>",
