@@ -13,7 +13,7 @@ return {
       -- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
       -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
       auto_suggestions_provider = nil,
-      provider = "openrouter", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
+      provider = "gemini", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
       providers = {
         claude = {
           endpoint = "https://api.anthropic.com",
@@ -50,8 +50,24 @@ return {
           __inherited_from = "openai",
           endpoint = "https://openrouter.ai/api/v1",
           api_key_name = "OPENROUTER_API_KEY",
-          model = "mistralai/devstral-small:free",
+          -- model = "mistralai/devstral-small:free",
           -- model = "deepseek/deepseek-r1-0528:free",
+          model = "deepseek/deepseek-r1-distill-qwen-32b:free",
+          disable_tools = true,
+        },
+        gemini = {
+          __inherited_from = "openai",
+          endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+          api_key_name = "GEMINI_API_KEY",
+          model = "gemini-2.0-flash-thinking-exp",
+          -- disable_tools = true,
+        },
+        aimlapi = {
+          __inherited_from = "openai",
+          endpoint = "https://api.aimlapi.com",
+          api_key_name = "GEMINI_API_KEY",
+          model = "google/gemini-2.5-flash-preview",
+          -- model = "anthropic/claude-sonnet-4",
           -- disable_tools = true,
         },
       },
