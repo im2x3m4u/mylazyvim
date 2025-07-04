@@ -8,12 +8,17 @@ return {
       -- add any opts here
       -- ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
       ---@alias Mode "agentic" | "legacy"
-      mode = "agentic", -- The default mode for interaction. "agentic" uses tools to automatically generate code, "legacy" uses the old planning method to generate code.
+      mode = "legacy", -- The default mode for interaction. "agentic" uses tools to automatically generate code, "legacy" uses the old planning method to generate code.
       -- WARNING: Since auto-suggestions are a high-frequency operation and therefore expensive,
       -- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
       -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
       auto_suggestions_provider = nil,
-      provider = "gemini", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
+      provider = "openrouter", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
+      cursor_applying_provider = "openrouter", -- In this example, use Groq for applying, but you can also use any provider you want.
+      behaviour = {
+        --- ... existing behaviours
+        enable_cursor_planning_mode = true, -- enable cursor planning mode!
+      },
       providers = {
         claude = {
           endpoint = "https://api.anthropic.com",
@@ -28,7 +33,7 @@ return {
           endpoint = "https://api.openai.com/v1",
           model = "gpt-4o-mini", -- your desired model (or use gpt-4o, etc.)
           extra_request_body = {
-            timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+            -- timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
             temperature = 0.75,
             max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
             --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
@@ -51,8 +56,7 @@ return {
           endpoint = "https://openrouter.ai/api/v1",
           api_key_name = "OPENROUTER_API_KEY",
           -- model = "mistralai/devstral-small:free",
-          -- model = "deepseek/deepseek-r1-0528:free",
-          model = "deepseek/deepseek-r1-distill-qwen-32b:free",
+          model = "deepseek/deepseek-r1-0528:free",
           disable_tools = true,
         },
         gemini = {
@@ -61,6 +65,13 @@ return {
           api_key_name = "GEMINI_API_KEY",
           model = "gemini-2.0-flash-thinking-exp",
           -- disable_tools = true,
+        },
+        groq = { -- define groq provider
+          __inherited_from = "openai",
+          api_key_name = "GROQ_API_KEY",
+          endpoint = "https://api.groq.com/openai/v1/",
+          model = "llama-3.3-70b-versatile",
+          max_completion_tokens = 32768, -- remember to increase this value, otherwise it will stop generating halfway
         },
         aimlapi = {
           __inherited_from = "openai",

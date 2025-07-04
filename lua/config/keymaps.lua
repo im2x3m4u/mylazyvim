@@ -51,9 +51,9 @@ map.bulk_register({
   {
     mode = { "n" },
     lhs = "<m-s>",
-    rhs = "ci'",
+    rhs = "ciw",
     options = { silent = true },
-    description = "Change in single quotes",
+    description = "Change in word",
   },
   {
     mode = { "n" },
