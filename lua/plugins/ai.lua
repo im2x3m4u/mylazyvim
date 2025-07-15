@@ -13,7 +13,7 @@ return {
       -- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
       -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
       auto_suggestions_provider = nil,
-      provider = "openrouter", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
+      provider = "aimlapi", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
       cursor_applying_provider = "openrouter", -- In this example, use Groq for applying, but you can also use any provider you want.
       behaviour = {
         --- ... existing behaviours
@@ -46,7 +46,7 @@ return {
           model = "deepseek-coder",
           extra_request_body = {
             timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-            temperature = 0.75,
+            temperature = 0.55,
             max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
             --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
           },
@@ -71,12 +71,11 @@ return {
           api_key_name = "GROQ_API_KEY",
           endpoint = "https://api.groq.com/openai/v1/",
           model = "llama-3.3-70b-versatile",
-          max_completion_tokens = 32768, -- remember to increase this value, otherwise it will stop generating halfway
         },
         aimlapi = {
           __inherited_from = "openai",
           endpoint = "https://api.aimlapi.com",
-          api_key_name = "GEMINI_API_KEY",
+          api_key_name = "AIMLAPI_API_KEY",
           model = "google/gemini-2.5-flash-preview",
           -- model = "anthropic/claude-sonnet-4",
           -- disable_tools = true,
