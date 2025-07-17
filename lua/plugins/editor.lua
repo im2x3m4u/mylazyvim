@@ -1,43 +1,53 @@
 return {
   {
     "sphamba/smear-cursor.nvim",
-    opts = {
-      stiffness = 0.5,
-      trailing_stiffness = 0.5,
-      damping = 0.67,
-      matrix_pixel_threshold = 0.5,
+    opts = { -- Default  Range
+      cursor_color = "#e3ede3",
+      stiffness = 0.6, -- 0.6      [0, 1]
+      trailing_stiffness = 0.5, -- 0.4      [0, 1]
+      stiffness_insert_mode = 0.5, -- 0.5      [0, 1]
+      trailing_stiffness_insert_mode = 0.7, -- 0.5      [0, 1]
+      damping = 0.75, -- 0.65     [0, 1]
+      damping_insert_mode = 0.8, -- 0.7      [0, 1]
+      distance_stop_animating = 0.5, -- 0.1      > 0
     },
+    -- opts = {
+    --   stiffness = 0.5,
+    --   trailing_stiffness = 0.5,
+    --   damping = 0.67,
+    --   matrix_pixel_threshold = 0.5,
+    -- },
   },
-  {
-    "tris203/precognition.nvim",
-    event = "VeryLazy",
-    opts = {
-      startVisible = true,
-      showBlankVirtLine = true,
-      highlightColor = { link = "Comment" },
-      hints = {
-        Caret = { text = "^", prio = 2 },
-        Dollar = { text = "$", prio = 1 },
-        MatchingPair = { text = "%", prio = 5 },
-        Zero = { text = "0", prio = 1 },
-        w = { text = "w", prio = 10 },
-        b = { text = "b", prio = 9 },
-        e = { text = "e", prio = 8 },
-        W = { text = "W", prio = 7 },
-        B = { text = "B", prio = 6 },
-        E = { text = "E", prio = 5 },
-      },
-      gutterHints = {
-        G = { text = "G", prio = 10 },
-        gg = { text = "gg", prio = 9 },
-        PrevParagraph = { text = "{", prio = 8 },
-        NextParagraph = { text = "}", prio = 8 },
-      },
-      disabled_fts = {
-        "startify",
-      },
-    },
-  },
+  -- {
+  --   "tris203/precognition.nvim",
+  --   event = "VeryLazy",
+  --   opts = {
+  --     startVisible = true,
+  --     showBlankVirtLine = true,
+  --     highlightColor = { link = "Comment" },
+  --     hints = {
+  --       Caret = { text = "^", prio = 2 },
+  --       Dollar = { text = "$", prio = 1 },
+  --       MatchingPair = { text = "%", prio = 5 },
+  --       Zero = { text = "0", prio = 1 },
+  --       w = { text = "w", prio = 10 },
+  --       b = { text = "b", prio = 9 },
+  --       e = { text = "e", prio = 8 },
+  --       W = { text = "W", prio = 7 },
+  --       B = { text = "B", prio = 6 },
+  --       E = { text = "E", prio = 5 },
+  --     },
+  --     gutterHints = {
+  --       G = { text = "G", prio = 10 },
+  --       gg = { text = "gg", prio = 9 },
+  --       PrevParagraph = { text = "{", prio = 8 },
+  --       NextParagraph = { text = "}", prio = 8 },
+  --     },
+  --     disabled_fts = {
+  --       "startify",
+  --     },
+  --   },
+  -- },
   {
     "leath-dub/snipe.nvim",
     keys = {
