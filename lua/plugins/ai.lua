@@ -8,12 +8,12 @@ return {
       -- add any opts here
       -- ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
       ---@alias Mode "agentic" | "legacy"
-      mode = "legacy", -- The default mode for interaction. "agentic" uses tools to automatically generate code, "legacy" uses the old planning method to generate code.
+      mode = "agentic", -- The default mode for interaction. "agentic" uses tools to automatically generate code, "legacy" uses the old planning method to generate code.
       -- WARNING: Since auto-suggestions are a high-frequency operation and therefore expensive,
       -- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
       -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
       auto_suggestions_provider = nil,
-      provider = "aimlapi", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
+      provider = "openrouter", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
       cursor_applying_provider = "openrouter", -- In this example, use Groq for applying, but you can also use any provider you want.
       behaviour = {
         --- ... existing behaviours
@@ -56,8 +56,9 @@ return {
           endpoint = "https://openrouter.ai/api/v1",
           api_key_name = "OPENROUTER_API_KEY",
           -- model = "mistralai/devstral-small:free",
-          model = "deepseek/deepseek-r1-0528:free",
-          disable_tools = true,
+          -- model = "deepseek/deepseek-r1-0528:free",
+          model = "moonshotai/kimi-k2:free",
+          -- disable_tools = true,
         },
         gemini = {
           __inherited_from = "openai",
