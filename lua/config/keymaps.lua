@@ -246,13 +246,13 @@ map.bulk_register({
     options = { silent = true },
     description = "Find Files Here",
   },
-  {
-    mode = { "n" },
-    lhs = ";",
-    rhs = ":",
-    options = { silent = false },
-    description = "Enter Command Mode",
-  },
+  -- {
+  --   mode = { "n" },
+  --   lhs = ";",
+  --   rhs = ":",
+  --   options = { silent = false },
+  --   description = "Enter Command Mode",
+  -- },
   {
     mode = { "v" },
     lhs = "<tab>",

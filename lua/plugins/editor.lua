@@ -1,4 +1,5 @@
 return {
+  -- { "njcom/hjkl-remap" },
   {
     "sphamba/smear-cursor.nvim",
     opts = { -- Default  Range
