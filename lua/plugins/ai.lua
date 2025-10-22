@@ -1,5 +1,11 @@
 return {
   {
+    "supermaven-inc/supermaven-nvim",
+    config = function()
+      require("supermaven-nvim").setup({})
+    end,
+  },
+  {
     "yetone/avante.nvim",
     event = "VeryLazy",
     lazy = false,
@@ -56,8 +62,8 @@ return {
           endpoint = "https://openrouter.ai/api/v1",
           api_key_name = "OPENROUTER_API_KEY",
           -- model = "mistralai/devstral-small:free",
-          -- model = "deepseek/deepseek-r1-0528:free",
-          model = "moonshotai/kimi-k2:free",
+          model = "deepseek/deepseek-r1-0528:free",
+          -- model = "moonshotai/kimi-k2:free",
           -- disable_tools = true,
         },
         gemini = {

@@ -8,7 +8,7 @@ require("config.lazy")
 -- vim.cmd("colorscheme koehler")
 --
 -- vim.cmd("colorscheme base16-tokyodark")
-vim.opt.langmap:append("jkl\\;';hjkl\\;")
+-- vim.opt.langmap:append("jkl\\;';hjkl\\;")
 -- paste without overwriting
 vim.keymap.set("v", "p", "P")
 -- motion keys (left, down, up, right)
