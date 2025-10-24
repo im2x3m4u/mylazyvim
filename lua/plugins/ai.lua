@@ -19,7 +19,7 @@ return {
       -- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
       -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
       auto_suggestions_provider = nil,
-      provider = "openrouter", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
+      provider = "gemini", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
       cursor_applying_provider = "openrouter", -- In this example, use Groq for applying, but you can also use any provider you want.
       behaviour = {
         --- ... existing behaviours
@@ -67,10 +67,13 @@ return {
           -- disable_tools = true,
         },
         gemini = {
-          __inherited_from = "openai",
-          endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+          -- __inherited_from = "openai",
+          -- openrouterendpoint = "https://generativelanguage.googleapis.com/v1beta/models",
           api_key_name = "GEMINI_API_KEY",
-          model = "gemini-2.0-flash-thinking-exp",
+          -- -- model = "gemini-2.5-flash",
+          model = "gemini-flash-lite-latest",
+          temperature = 0, -- Set 0 biar jawabannya konsisten
+          max_tokens = 4096,
           -- disable_tools = true,
         },
         groq = { -- define groq provider
