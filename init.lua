@@ -12,7 +12,7 @@ require("config.lazy")
 -- paste without overwriting
 vim.keymap.set("v", "p", "P")
 -- motion keys (left, down, up, right)
-vim.keymap.set("n", "J", "6j")
+-- vim.keymap.set("n", "J", "6j")
 vim.keymap.set("n", "H", "0^")
 vim.keymap.set("n", "L", "$")
 
