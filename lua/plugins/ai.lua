@@ -19,13 +19,20 @@ return {
       -- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
       -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
       auto_suggestions_provider = nil,
-      provider = "gemini", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
-      cursor_applying_provider = "openrouter", -- In this example, use Groq for applying, but you can also use any provider you want.
+      provider = "glm", -- The provider used in Aider mode or in the planning phase of Cursor Planning Mode
+      cursor_applying_provider = "kimik2", -- In this example, use Groq for applying, but you can also use any provider you want.
       behaviour = {
         --- ... existing behaviours
         enable_cursor_planning_mode = true, -- enable cursor planning mode!
       },
       providers = {
+        kimik2 = {
+          __inherited_from = "openai",
+          api_key_name = "KIMIK2_API_KEY",
+          endpoint = "https://integrate.api.nvidia.com/v1",
+          model = "moonshotai/kimi-k2-instruct-0905",
+          timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+        },
         claude = {
           endpoint = "https://api.anthropic.com",
           -- model = "claude-3-7-sonnet-20250219",
@@ -48,14 +55,33 @@ return {
         deepseek = {
           __inherited_from = "openai",
           api_key_name = "DEEPSEEK_API_KEY",
-          endpoint = "https://api.deepseek.com",
-          model = "deepseek-coder",
+          endpoint = "https://integrate.api.nvidia.com/v1",
+          model = "deepseek-ai/deepseek-v3.2",
           extra_request_body = {
-            timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
-            temperature = 0.55,
-            max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
-            --reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+            -- temperature = 1,
+            top_p = 0.95,
+            max_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
           },
+        },
+        glm = {
+          __inherited_from = "openai",
+          endpoint = "https://integrate.api.nvidia.com/v1",
+          api_key_name = "GLM_API_KEY",
+          model = "z-ai/glm4.7",
+          -- messages = {
+          --   {
+          --     role = "user",
+          --     content = "",
+          --   },
+          -- },
+          temperature = 1,
+          top_p = 1,
+          max_tokens = 16384,
+          chat_template_kwargs = {
+            enable_thinking = true,
+            clear_thinking = false,
+          },
+          stream = true,
         },
         openrouter = {
           __inherited_from = "openai",
@@ -70,10 +96,9 @@ return {
           -- __inherited_from = "openai",
           -- openrouterendpoint = "https://generativelanguage.googleapis.com/v1beta/models",
           api_key_name = "GEMINI_API_KEY",
-          -- -- model = "gemini-2.5-flash",
-          model = "gemini-flash-lite-latest",
-          temperature = 0, -- Set 0 biar jawabannya konsisten
-          max_tokens = 4096,
+          model = "gemini-3-flash-preview",
+          temperature = 1, -- Set 0 biar jawabannya konsisten
+          max_tokens = 8192,
           -- disable_tools = true,
         },
         groq = { -- define groq provider
